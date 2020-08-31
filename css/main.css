@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -111,7 +112,7 @@ button:focus {
 
 /* Slider
 ====================== */
-.sleder {
+.slider {
   position: relative;
   width: 100%;
 }
@@ -122,6 +123,7 @@ button:focus {
   height: 18px;
   margin-right: 15%;
   margin-left: 15%;
+  z-index: 9;
 }
 .slider-nav-next,
 .slider-nav-prev {
@@ -131,11 +133,21 @@ button:focus {
   border-right: 5px solid #fff;
   border-bottom: 5px solid #fff;
   border-radius: 5px;
+  cursor: pointer;
 }
 .carousel-indicators {
+  list-style: none;
+  display: flex;
   justify-content: start;
   margin: 0 20px;
   position: static;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
 }
 .carousel-indicators li {
   width: 10px;
@@ -144,7 +156,21 @@ button:focus {
   border-radius: 50%;
   background-color: transparent;
   padding: 2px;
+  cursor: pointer;
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-clip: padding-box;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
 }
+.carousel-indicators .active {
+  opacity: 1;
+}
+
 .carousel-indicators li.active div {
   background-color: #fff;
   width: 100%;
@@ -154,6 +180,7 @@ button:focus {
 .carousel-item img {
   width: 100%;
   height: 800px;
+  display: block;
 }
 
 .carousel-control-prev,
@@ -161,12 +188,23 @@ button:focus {
   position: static;
   opacity: 1;
   width: 30px;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity .15s ease;
 }
 .carousel-control-prev {
   transform: rotate(135deg);
+  left: 0;
 }
 .carousel-control-next {
   transform: rotate(-45deg);
+  right: 0;
 }
 .slider-button {
   position: absolute;
@@ -241,6 +279,23 @@ button:focus {
   font-size: 36px;
   font-weight: bold;
 }
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
 /* ------------------- */
 
 /* Inform
@@ -274,23 +329,23 @@ button:focus {
 }
 /* Media
 ===================== */
-@media(max-width: 992px) {
-    .slider-nav {
-        bottom: 30px;
-    }
-    .slider-button {
-        bottom: 70px;
-    }
-    .carousel-item img {
-        height: 500px;
-    }
-    .inform {
-        position: static;
-    }
-    .inform-item {
-        width: 45%;
-        margin-bottom: 10px;
-    }
+@media (max-width: 992px) {
+  .slider-nav {
+    bottom: 30px;
+  }
+  .slider-button {
+    bottom: 70px;
+  }
+  .carousel-item img {
+    height: 500px;
+  }
+  .inform {
+    position: static;
+  }
+  .inform-item {
+    width: 45%;
+    margin-bottom: 10px;
+  }
 }
 @media (max-width: 768px) {
   .header-inner {
@@ -304,7 +359,7 @@ button:focus {
     margin-right: 30px;
   }
   .navigation {
-    top: 99px;
+    top: 95px;
   }
   .burger {
     display: block;
@@ -340,14 +395,16 @@ button:focus {
   }
   .carousel-item-inner-number {
     height: 39px;
-}
+  }
   .carousel-item-inner-number p span {
     font-size: 28px;
   }
 }
-@media(max-width: 568px) {
-
-    .inform-item {
-        width: 100%;
-    }
+@media (max-width: 568px) {
+  .inform-item {
+    width: 100%;
+  }
+  .carousel-item img {
+    height: 400px;
+  }
 }
